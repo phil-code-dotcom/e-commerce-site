@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+
+    <!--
+  TailStore - An E-commerce store dashboard
+
+  Created by John Champ
+
+  Founder of Pixelcave      -> https://pixelcave.com
+  Building CodedVisuals     -> https://codedvisuals.com
+  Building Tailkit          -> https://tailkit.com
+  Let's connect on X        -> https://x.com/pixelcave_john
+                on Bluesky  -> https://bsky.app/profile/pixelcave-john.bsky.social
+-->
+
+    <div x-data="{ mobileSidebarOpen: false }">
+        <!-- Page Container -->
+        <div id="page-container" class="mx-auto flex min-h-screen w-full min-w-[320px] flex-col bg-stone-100 lg:ps-64">
+            <!-- Page Sidebar -->
+            <nav id="page-sidebar"
+                class="fixed inset-s-0 top-0 bottom-0 z-50 flex h-full w-80 flex-col overflow-auto bg-stone-100 transition-transform duration-500 ease-out lg:w-64 lg:ltr:translate-x-0 lg:rtl:translate-x-0"
+                x-bind:class="{
+        'ltr:-translate-x-full rtl:translate-x-full': !mobileSidebarOpen,
+        'translate-x-0 border-e border-stone-200 shadow-lg lg:shadow-none lg:border-none': mobileSidebarOpen,
+      }" aria-label="Main Sidebar Navigation" x-cloak>
+                <!-- Sidebar Header -->
+                <div class="flex h-20 w-full flex-none items-center justify-between ps-6.5 pe-4">
+                    <!-- Brand -->
+                    <a href="javascript:void(0)"
+                        class="group inline-flex items-center gap-2 text-lg font-semibold text-stone-800 transition duration-150 ease-out hover:opacity-75 active:opacity-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-fish-symbol inline-block size-5 text-violet-600 transition duration-150 ease-out group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">
+                            <path d="M2 16s9-15 20-4C11 23 2 8 2 8"></path>
+                        </svg>
+                        <div class="flex items-center gap-px">
+                            <span>tail</span><span
+                                class="origin-bottom-start inline-block font-bold text-violet-600 transition duration-150 ease-out group-hover:translate-x-1 group-hover:-rotate-3 rtl:group-hover:-translate-x-1 rtl:group-hover:rotate-3">store</span>
+                        </div>
+                    </a>
+                    <!-- END Brand -->
+
+                    <!-- Close Sidebar on Mobile -->
+                    <div class="lg:hidden">
+                        <button type="button"
+                            class="flex size-10 items-center justify-center text-stone-400 hover:text-stone-600 active:text-stone-400"
+                            x-on:click="mobileSidebarOpen = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-x inline-block size-5">
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- END Close Sidebar on Mobile -->
+                </div>
+                <!-- END Sidebar Header -->
+
+                <!-- Main Navigation -->
+                <div class="flex grow flex-col gap-2.25 overflow-y-auto p-4">
+                    <a href="javascript:void(0)"
+                        class="group flex items-center gap-3 rounded-xl bg-white px-2.5 py-2 font-medium text-stone-950 shadow-xs shadow-stone-300/50">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-store inline-block size-5 flex-none text-violet-600">
+                            <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"></path>
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                            <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path>
+                            <path d="M2 7h20"></path>
+                            <path
+                                d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7">
+                            </path>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="javascript:void(0)"
+                        class="group flex items-center gap-3 rounded-xl px-2.5 py-2 font-medium text-stone-500 hover:bg-white/50 hover:text-stone-900 hover:shadow-xs hover:shadow-stone-300/50 active:bg-white active:text-stone-800 active:shadow-stone-300/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-shopping-bag inline-block size-5 flex-none text-stone-400 group-hover:text-stone-700 group-active:text-violet-600">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                            <path d="M3 6h18"></path>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span>Orders</span>
+                    </a>
+                    <a href="javascript:void(0)"
+                        class="group flex items-center gap-3 rounded-xl px-2.5 py-2 font-medium text-stone-500 hover:bg-white/50 hover:text-stone-900 hover:shadow-xs hover:shadow-stone-300/50 active:bg-white active:text-stone-800 active:shadow-stone-300/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-box inline-block size-5 flex-none text-stone-400 group-hover:text-stone-700 group-active:text-violet-600">
+                            <path
+                                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+                            </path>
+                            <path d="m3.3 7 8.7 5 8.7-5"></path>
+                            <path d="M12 22V12"></path>
+                        </svg>
+                        <span>Products</span>
+                    </a>
+                    <a href="javascript:void(0)"
+                        class="group flex items-center gap-3 rounded-xl px-2.5 py-2 font-medium text-stone-500 hover:bg-white/50 hover:text-stone-900 hover:shadow-xs hover:shadow-stone-300/50 active:bg-white active:text-stone-800 active:shadow-stone-300/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-users-round inline-block size-5 flex-none text-stone-400 group-hover:text-stone-700 group-active:text-violet-600">
+                            <path d="M18 21a8 8 0 0 0-16 0"></path>
+                            <circle cx="10" cy="8" r="5"></circle>
+                            <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"></path>
+                        </svg>
+                        <span>Customers</span>
+                    </a>
+                    <a href="javascript:void(0)"
+                        class="group flex items-center gap-3 rounded-xl px-2.5 py-2 font-medium text-stone-500 hover:bg-white/50 hover:text-stone-900 hover:shadow-xs hover:shadow-stone-300/50 active:bg-white active:text-stone-800 active:shadow-stone-300/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-chart-spline inline-block size-5 flex-none text-stone-400 group-hover:text-stone-700 group-active:text-violet-600">
+                            <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                            <path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"></path>
+                        </svg>
+                        <span>Analytics</span>
+                    </a>
+                </div>
+                <!-- END Main Navigation -->
+
+                <!-- Sub Navigation -->
+                <div class="flex w-full flex-none items-center gap-2.25 p-4">
+                    <a href="javascript:void(0)"
+                        class="group flex grow items-center gap-3 rounded-xl px-2.5 py-2 font-medium text-stone-500 hover:bg-white/50 hover:text-stone-900 hover:shadow-xs hover:shadow-stone-300/50 active:bg-white active:text-stone-800 active:shadow-stone-300/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-settings inline-block size-5 flex-none text-stone-400 group-hover:text-stone-700 group-active:text-violet-600">
+                            <path
+                                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+                            </path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                    <span class="h-6 border-s border-dashed border-stone-300"></span>
+                    <a href="javascript:void(0)"
+                        class="group flex flex-none items-center gap-3 rounded-xl px-2.5 py-2 font-medium text-stone-600 hover:bg-white hover:text-stone-900 hover:shadow-xs hover:shadow-stone-300/50 active:bg-white active:text-stone-800 active:shadow-stone-300/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-log-out inline-block size-5 flex-none text-stone-400 group-hover:text-rose-600">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" x2="9" y1="12" y2="12"></line>
+                        </svg>
+                        <span class="sr-only">Logout</span>
+                    </a>
+                </div>
+                <!-- END Sub Navigation -->
+            </nav>
+            <!-- Page Sidebar -->
+
+            <!-- Page Header -->
+            <header id="page-header"
+                class="fixed inset-s-0 inset-e-0 top-0 z-30 flex h-20 flex-none items-center bg-white/95 shadow-xs backdrop-blur-xs lg:hidden">
+                <div class="container mx-auto flex justify-between px-4 lg:px-8 xl:max-w-7xl">
+                    <!-- Left Section -->
+                    <div class="flex items-center gap-2">
+                        <!-- Toggle Sidebar on Mobile -->
+                        <button type="button"
+                            class="inline-flex size-10 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white leading-6 font-semibold text-stone-800 shadow-xs hover:border-stone-300 hover:bg-stone-100 hover:text-stone-800 hover:shadow-sm focus:ring-3 focus:ring-stone-500/25 focus:outline-hidden active:border-white active:bg-white active:shadow-none"
+                            x-on:click="mobileSidebarOpen = true" aria-label="Toggle Sidebar">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-square-menu inline-block size-5">
+                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                <path d="M7 8h10"></path>
+                                <path d="M7 12h10"></path>
+                                <path d="M7 16h10"></path>
+                            </svg>
+                        </button>
+                        <!-- END Toggle Sidebar on Mobile -->
+                    </div>
+                    <!-- END Left Section -->
+
+                    <!-- Middle Section -->
+                    <div class="flex items-center gap-2">
+                        <!-- Brand -->
+                        <a href="javascript:void(0)"
+                            class="group inline-flex items-center gap-2 text-lg font-semibold text-stone-800 transition duration-150 ease-out hover:opacity-75 active:opacity-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-fish-symbol inline-block size-5 text-violet-600 transition duration-150 ease-out group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">
+                                <path d="M2 16s9-15 20-4C11 23 2 8 2 8"></path>
+                            </svg>
+                            <div class="flex items-center gap-px">
+                                <span>tail</span><span
+                                    class="origin-bottom-start inline-block font-bold text-violet-600 transition duration-150 ease-out group-hover:translate-x-1 group-hover:-rotate-3 rtl:group-hover:-translate-x-1 rtl:group-hover:rotate-3">store</span>
+                            </div>
+                        </a>
+                        <!-- END Brand -->
+                    </div>
+                    <!-- END Middle Section -->
+
+                    <!-- Right Section -->
+                    <div class="flex items-center gap-2">
+                        <!-- Settings -->
+                        <a href="javascript:void(0)"
+                            class="inline-flex size-10 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white leading-6 font-semibold text-stone-800 shadow-xs hover:border-stone-300 hover:bg-stone-100 hover:text-stone-800 hover:shadow-sm focus:ring-3 focus:ring-stone-500/25 focus:outline-hidden active:border-white active:bg-white active:shadow-none"
+                            aria-label="Settings">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-circle-user inline-block size-5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <circle cx="12" cy="10" r="3"></circle>
+                                <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path>
+                            </svg>
+                        </a>
+                        <!-- END Toggle Sidebar on Mobile -->
+                    </div>
+                    <!-- END Right Section -->
+                </div>
+            </header>
+            <!-- END Page Header -->
+
+            <!-- Page Content -->
+            <main id="page-content"
+                class="flex max-w-full flex-auto flex-col bg-white pt-20 lg:me-4 lg:mt-4 lg:rounded-xl lg:border lg:border-stone-200 lg:pt-0">
+                <!-- Page Section -->
+                <div class="container mx-auto space-y-10 px-4 py-8 lg:space-y-16 lg:px-8 lg:py-12 xl:max-w-7xl">
+                    <!-- Overview -->
+                    <div>
+                        <h1 class="text-2xl font-bold">Store Overview</h1>
+                        <p class="mt-1 mb-8 text-sm/relaxed font-medium text-stone-500">
+                            Welcome back! Your store is performing excellently today.
+                        </p>
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-8 xl:grid-cols-4">
+                            <!-- Revenue Card -->
+                            <a href="javascript:void(0)"
+                                class="flex flex-col rounded-xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="flex grow items-center justify-between p-5 lg:p-6">
+                                    <dl>
+                                        <dt class="text-2xl font-bold">$24,580</dt>
+                                        <dd class="text-sm text-stone-600">Revenue</dd>
+                                    </dl>
+                                    <div
+                                        class="flex size-12 items-center justify-center rounded-lg bg-green-100 text-green-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="lucide lucide-dollar-sign inline-block size-6">
+                                            <line x1="12" x2="12" y1="2" y2="22"></line>
+                                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full rounded-b-xl border-t border-stone-100 bg-stone-50 px-5 py-3 text-xs font-medium text-stone-500 lg:px-6">
+                                    <p class="flex items-center gap-1">
+                                        <span class="text-green-600">↑ 12.5%</span> from last month
+                                    </p>
+                                </div>
+                            </a>
+                            <!-- END Revenue Card -->
+
+                            <!-- Orders Card -->
+                            <a href="javascript:void(0)"
+                                class="flex flex-col rounded-xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="flex grow items-center justify-between p-5 lg:p-6">
+                                    <dl>
+                                        <dt class="text-2xl font-bold">347</dt>
+                                        <dd class="text-sm text-stone-600">Orders</dd>
+                                    </dl>
+                                    <div
+                                        class="flex size-12 items-center justify-center rounded-lg bg-violet-100 text-violet-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="lucide lucide-shopping-bag inline-block size-6">
+                                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                                            <path d="M3 6h18"></path>
+                                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full rounded-b-xl border-t border-stone-100 bg-stone-50 px-5 py-3 text-xs font-medium text-stone-500 lg:px-6">
+                                    <p>23 pending fulfillment</p>
+                                </div>
+                            </a>
+                            <!-- END Orders Card -->
+
+                            <!-- Products Card -->
+                            <a href="javascript:void(0)"
+                                class="flex flex-col rounded-xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="flex grow items-center justify-between p-5 lg:p-6">
+                                    <dl>
+                                        <dt class="text-2xl font-bold">1,248</dt>
+                                        <dd class="text-sm text-stone-600">Products Sold</dd>
+                                    </dl>
+                                    <div
+                                        class="flex size-12 items-center justify-center rounded-lg bg-orange-100 text-orange-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="lucide lucide-boxes inline-block size-6">
+                                            <path
+                                                d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z">
+                                            </path>
+                                            <path d="m7 16.5-4.74-2.85"></path>
+                                            <path d="m7 16.5 5-3"></path>
+                                            <path d="M7 16.5v5.17"></path>
+                                            <path
+                                                d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z">
+                                            </path>
+                                            <path d="m17 16.5-5-3"></path>
+                                            <path d="m17 16.5 4.74-2.85"></path>
+                                            <path d="M17 16.5v5.17"></path>
+                                            <path
+                                                d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z">
+                                            </path>
+                                            <path d="M12 8 7.26 5.15"></path>
+                                            <path d="m12 8 4.74-2.85"></path>
+                                            <path d="M12 13.5V8"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full rounded-b-xl border-t border-stone-100 bg-stone-50 px-5 py-3 text-xs font-medium text-stone-500 lg:px-6">
+                                    <p>This month</p>
+                                </div>
+                            </a>
+                            <!-- END Products Card -->
+
+                            <!-- Customers Card -->
+                            <a href="javascript:void(0)"
+                                class="flex flex-col rounded-xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="flex grow items-center justify-between p-5 lg:p-6">
+                                    <dl>
+                                        <dt class="text-2xl font-bold">2,847</dt>
+                                        <dd class="text-sm text-stone-600">Customers</dd>
+                                    </dl>
+                                    <div
+                                        class="flex size-12 items-center justify-center rounded-lg bg-blue-100 text-blue-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="lucide lucide-users inline-block size-6">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full rounded-b-xl border-t border-stone-100 bg-stone-50 px-5 py-3 text-xs font-medium text-stone-500 lg:px-6">
+                                    <p class="flex items-center gap-1">
+                                        <span class="text-green-600">+127</span> new this week
+                                    </p>
+                                </div>
+                            </a>
+                            <!-- END Customers Card -->
+                        </div>
+                    </div>
+                    <!-- END Overview -->
+
+                    <!-- Top Products -->
+                    <div>
+                        <h2 class="text-2xl font-bold">Best Sellers</h2>
+                        <h3 class="mt-1 mb-8 text-sm/relaxed font-medium text-stone-500">
+                            Your top performing products this month.
+                        </h3>
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-8 xl:grid-cols-4">
+                            <!-- Product Card -->
+                            <a href="javascript:void(0)"
+                                class="group flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="overflow-hidden p-4">
+                                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop"
+                                        alt="Wireless Headphones"
+                                        class="aspect-video w-full rounded-lg object-cover transition duration-150 group-hover:scale-105 md:aspect-square" />
+                                </div>
+                                <div class="flex grow flex-col px-4 pt-2 pb-4">
+                                    <h4 class="mb-1 font-semibold text-stone-800">
+                                        Wireless Headphones Pro
+                                    </h4>
+                                    <p class="mb-3 text-xs text-stone-500">Premium Audio</p>
+                                    <div class="mt-auto flex items-center justify-between">
+                                        <span class="text-lg font-bold text-violet-700">$129.99</span>
+                                        <span class="text-xs text-stone-500">248 sold</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Product Card -->
+
+                            <!-- Product Card -->
+                            <a href="javascript:void(0)"
+                                class="group flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="overflow-hidden p-4">
+                                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop"
+                                        alt="Smart Watch"
+                                        class="aspect-video w-full rounded-lg object-cover transition duration-150 group-hover:scale-105 md:aspect-square" />
+                                </div>
+                                <div class="flex grow flex-col px-4 pt-2 pb-4">
+                                    <h4 class="mb-1 font-semibold text-stone-800">
+                                        Smart Watch Elite
+                                    </h4>
+                                    <p class="mb-3 text-xs text-stone-500">Fitness &amp; Health</p>
+                                    <div class="mt-auto flex items-center justify-between">
+                                        <span class="text-lg font-bold text-violet-700">$299.99</span>
+                                        <span class="text-xs text-stone-500">187 sold</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Product Card -->
+
+                            <!-- Product Card -->
+                            <a href="javascript:void(0)"
+                                class="group flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="overflow-hidden p-4">
+                                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop"
+                                        alt="Designer Sunglasses"
+                                        class="aspect-video w-full rounded-lg object-cover transition duration-150 group-hover:scale-105 md:aspect-square" />
+                                </div>
+                                <div class="flex grow flex-col px-4 pt-2 pb-4">
+                                    <h4 class="mb-1 font-semibold text-stone-800">
+                                        Designer Sunglasses
+                                    </h4>
+                                    <p class="mb-3 text-xs text-stone-500">Fashion Accessories</p>
+                                    <div class="mt-auto flex items-center justify-between">
+                                        <span class="text-lg font-bold text-violet-700">$89.99</span>
+                                        <span class="text-xs text-stone-500">312 sold</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Product Card -->
+
+                            <!-- Product Card -->
+                            <a href="javascript:void(0)"
+                                class="group flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="overflow-hidden p-4">
+                                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=400&fit=crop"
+                                        alt="Leather Sneakers"
+                                        class="aspect-video w-full rounded-lg object-cover transition duration-150 group-hover:scale-105 md:aspect-square" />
+                                </div>
+                                <div class="flex grow flex-col px-4 pt-2 pb-4">
+                                    <h4 class="mb-1 font-semibold text-stone-800">
+                                        Premium Sneakers
+                                    </h4>
+                                    <p class="mb-3 text-xs text-stone-500">Footwear Collection</p>
+                                    <div class="mt-auto flex items-center justify-between">
+                                        <span class="text-lg font-bold text-violet-700">$149.99</span>
+                                        <span class="text-xs text-stone-500">156 sold</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- END Product Card -->
+                        </div>
+                    </div>
+                    <!-- END Top Products -->
+
+                    <!-- Recent Orders -->
+                    <div>
+                        <h2 class="text-2xl font-bold">Recent Orders</h2>
+                        <h3 class="mt-1 mb-8 text-sm/relaxed font-medium text-stone-500">
+                            Track your latest orders and their fulfillment status.
+                        </h3>
+                        <!-- Orders Table -->
+                        <div class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full text-sm">
+                                    <thead>
+                                        <tr class="border-b border-stone-100 bg-stone-50">
+                                            <th class="min-w-32 px-5 py-3 text-start font-semibold">
+                                                Order ID
+                                            </th>
+                                            <th class="px-5 py-3 text-start font-semibold">Customer</th>
+                                            <th class="min-w-48 px-5 py-3 text-start font-semibold">
+                                                Product
+                                            </th>
+                                            <th class="px-5 py-3 text-start font-semibold">Amount</th>
+                                            <th class="px-5 py-3 text-start font-semibold">Status</th>
+                                            <th class="min-w-32 px-5 py-3 text-start font-semibold">
+                                                Date
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-stone-100 hover:bg-stone-50">
+                                            <td class="px-5 py-4">
+                                                <a href="javascript:void(0)"
+                                                    class="font-medium text-violet-600 hover:text-violet-700">#ORD-7845</a>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div>
+                                                    <p class="font-medium">Emily Johnson</p>
+                                                    <p class="text-xs text-stone-500">
+                                                        emily.j@example.com
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">Wireless Headphones</td>
+                                            <td class="px-5 py-4 font-semibold">$129.99</td>
+                                            <td class="px-5 py-4">
+                                                <span
+                                                    class="inline-flex rounded-full bg-green-100 px-2 py-1 text-xs font-semibold text-green-700">Delivered</span>
+                                            </td>
+                                            <td class="px-5 py-4 text-stone-500">Nov 16, 2025</td>
+                                        </tr>
+                                        <tr class="border-b border-stone-100 hover:bg-stone-50">
+                                            <td class="px-5 py-4">
+                                                <a href="javascript:void(0)"
+                                                    class="font-medium text-violet-600 hover:text-violet-700">#ORD-7844</a>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div>
+                                                    <p class="font-medium">Michael Chen</p>
+                                                    <p class="text-xs text-stone-500">m.chen@example.com</p>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">Smart Watch Pro</td>
+                                            <td class="px-5 py-4 font-semibold">$299.99</td>
+                                            <td class="px-5 py-4">
+                                                <span
+                                                    class="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-700">Shipped</span>
+                                            </td>
+                                            <td class="px-5 py-4 text-stone-500">Nov 16, 2025</td>
+                                        </tr>
+                                        <tr class="border-b border-stone-100 hover:bg-stone-50">
+                                            <td class="px-5 py-4">
+                                                <a href="javascript:void(0)"
+                                                    class="font-medium text-violet-600 hover:text-violet-700">#ORD-7843</a>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div>
+                                                    <p class="font-medium">Sarah Williams</p>
+                                                    <p class="text-xs text-stone-500">
+                                                        s.williams@example.com
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">Laptop Stand</td>
+                                            <td class="px-5 py-4 font-semibold">$49.99</td>
+                                            <td class="px-5 py-4">
+                                                <span
+                                                    class="inline-flex rounded-full bg-orange-100 px-2 py-1 text-xs font-semibold text-orange-700">Processing</span>
+                                            </td>
+                                            <td class="px-5 py-4 text-stone-500">Nov 15, 2025</td>
+                                        </tr>
+                                        <tr class="border-b border-stone-100 hover:bg-stone-50">
+                                            <td class="px-5 py-4">
+                                                <a href="javascript:void(0)"
+                                                    class="font-medium text-violet-600 hover:text-violet-700">#ORD-7842</a>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div>
+                                                    <p class="font-medium">David Martinez</p>
+                                                    <p class="text-xs text-stone-500">
+                                                        d.martinez@example.com
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">USB-C Hub</td>
+                                            <td class="px-5 py-4 font-semibold">$79.99</td>
+                                            <td class="px-5 py-4">
+                                                <span
+                                                    class="inline-flex rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-700">Shipped</span>
+                                            </td>
+                                            <td class="px-5 py-4 text-stone-500">Nov 15, 2025</td>
+                                        </tr>
+                                        <tr class="border-b border-stone-100 hover:bg-stone-50">
+                                            <td class="px-5 py-4">
+                                                <a href="javascript:void(0)"
+                                                    class="font-medium text-violet-600 hover:text-violet-700">#ORD-7841</a>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div>
+                                                    <p class="font-medium">Jessica Taylor</p>
+                                                    <p class="text-xs text-stone-500">
+                                                        j.taylor@example.com
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">Mechanical Keyboard</td>
+                                            <td class="px-5 py-4 font-semibold">$159.99</td>
+                                            <td class="px-5 py-4">
+                                                <span
+                                                    class="inline-flex rounded-full bg-green-100 px-2 py-1 text-xs font-semibold text-green-700">Delivered</span>
+                                            </td>
+                                            <td class="px-5 py-4 text-stone-500">Nov 14, 2025</td>
+                                        </tr>
+                                        <tr class="hover:bg-stone-50">
+                                            <td class="px-5 py-4">
+                                                <a href="javascript:void(0)"
+                                                    class="font-medium text-violet-600 hover:text-violet-700">#ORD-7840</a>
+                                            </td>
+                                            <td class="px-5 py-4">
+                                                <div>
+                                                    <p class="font-medium">Robert Brown</p>
+                                                    <p class="text-xs text-stone-500">
+                                                        r.brown@example.com
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-4">Ergonomic Mouse</td>
+                                            <td class="px-5 py-4 font-semibold">$39.99</td>
+                                            <td class="px-5 py-4">
+                                                <span
+                                                    class="inline-flex rounded-full bg-orange-100 px-2 py-1 text-xs font-semibold text-orange-700">Processing</span>
+                                            </td>
+                                            <td class="px-5 py-4 text-stone-500">Nov 14, 2025</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Orders Table -->
+                    </div>
+                    <!-- END Recent Orders -->
+
+                    <!-- Top Customers -->
+                    <div>
+                        <h2 class="text-2xl font-bold">Top Customers</h2>
+                        <p class="mt-1 mb-8 text-sm/relaxed font-medium text-stone-500">
+                            Your most valuable customers this month.
+                        </p>
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-8">
+                            <!-- Customer Card -->
+                            <a href="javascript:void(0)"
+                                class="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="w-full grow p-5 text-center lg:p-6">
+                                    <img src="https://images.unsplash.com/photo-1567186937675-a5131c8a89ea?w=160&h=160&fit=crop"
+                                        alt="Customer Avatar" class="mb-4 inline-block size-16 rounded-full" />
+                                    <h4 class="font-semibold">Jeremy Theodore</h4>
+                                    <p class="text-sm font-medium text-stone-500">
+                                        j.theodore@example.com
+                                    </p>
+                                    <div class="mt-3 flex items-center justify-center gap-4 text-xs">
+                                        <div>
+                                            <p class="text-stone-500">Orders</p>
+                                            <p class="mt-0.5 font-semibold text-stone-700">24</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-stone-500">Spent</p>
+                                            <p class="mt-0.5 font-semibold text-violet-600">$3,240</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex w-full items-center justify-center gap-2 border-t border-stone-100 bg-stone-50 px-5 py-3 text-xs font-medium text-stone-500 lg:px-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                        class="hi-micro hi-star inline-block size-4 text-amber-500">
+                                        <path fill-rule="evenodd"
+                                            d="M8 1.75a.75.75 0 0 1 .692.462l1.41 3.393 3.664.293a.75.75 0 0 1 .428 1.317l-2.791 2.39.853 3.575a.75.75 0 0 1-1.12.814L7.998 12.08l-3.135 1.915a.75.75 0 0 1-1.12-.814l.852-3.574-2.79-2.39a.75.75 0 0 1 .427-1.318l3.663-.293 1.41-3.393A.75.75 0 0 1 8 1.75Z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>VIP Customer</span>
+                                </div>
+                            </a>
+                            <!-- END Customer Card -->
+
+                            <!-- Customer Card -->
+                            <a href="javascript:void(0)"
+                                class="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="w-full grow p-5 text-center lg:p-6">
+                                    <img src="https://images.unsplash.com/photo-1514846326710-096e4a8035e0?w=160&h=160&fit=crop"
+                                        alt="Customer Avatar" class="mb-4 inline-block size-16 rounded-full" />
+                                    <h4 class="font-semibold">Sue Keller</h4>
+                                    <p class="text-sm font-medium text-stone-500">
+                                        s.keller@example.com
+                                    </p>
+                                    <div class="mt-3 flex items-center justify-center gap-4 text-xs">
+                                        <div>
+                                            <p class="text-stone-500">Orders</p>
+                                            <p class="mt-0.5 font-semibold text-stone-700">18</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-stone-500">Spent</p>
+                                            <p class="mt-0.5 font-semibold text-violet-600">$2,850</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex w-full items-center justify-center gap-2 border-t border-stone-100 bg-stone-50 px-5 py-3 text-xs font-medium text-stone-500 lg:px-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                        class="hi-micro hi-star inline-block size-4 text-amber-500">
+                                        <path fill-rule="evenodd"
+                                            d="M8 1.75a.75.75 0 0 1 .692.462l1.41 3.393 3.664.293a.75.75 0 0 1 .428 1.317l-2.791 2.39.853 3.575a.75.75 0 0 1-1.12.814L7.998 12.08l-3.135 1.915a.75.75 0 0 1-1.12-.814l.852-3.574-2.79-2.39a.75.75 0 0 1 .427-1.318l3.663-.293 1.41-3.393A.75.75 0 0 1 8 1.75Z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>VIP Customer</span>
+                                </div>
+                            </a>
+                            <!-- END Customer Card -->
+
+                            <!-- Customer Card -->
+                            <a href="javascript:void(0)"
+                                class="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-stone-50/50 shadow-stone-200/75 hover:border-violet-300 hover:shadow-lg active:border-stone-200">
+                                <div class="w-full grow p-5 text-center lg:p-6">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop"
+                                        alt="Customer Avatar" class="mb-4 inline-block size-16 rounded-full" />
+                                    <h4 class="font-semibold">Alex Saunders</h4>
+                                    <p class="text-sm font-medium text-stone-500">
+                                        a.sanders@example.com
+                                    </p>
+                                    <div class="mt-3 flex items-center justify-center gap-4 text-xs">
+                                        <div>
+                                            <p class="text-stone-500">Orders</p>
+                                            <p class="mt-0.5 font-semibold text-stone-700">15</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-stone-500">Spent</p>
+                                            <p class="mt-0.5 font-semibold text-violet-600">$2,190</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex w-full items-center justify-center gap-2 border-t border-stone-100 bg-stone-50 px-5 py-3 text-xs font-medium text-stone-500 lg:px-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                        class="hi-micro hi-trophy inline-block size-4 text-amber-500">
+                                        <path fill-rule="evenodd"
+                                            d="M12 1.69a.494.494 0 0 0-.438-.494 32.352 32.352 0 0 0-7.124 0A.494.494 0 0 0 4 1.689v.567c-.811.104-1.612.24-2.403.406a.75.75 0 0 0-.595.714 4.5 4.5 0 0 0 4.35 4.622A3.99 3.99 0 0 0 7 8.874V10H6a1 1 0 0 0-1 1v2h-.667C3.597 13 3 13.597 3 14.333c0 .368.298.667.667.667h8.666a.667.667 0 0 0 .667-.667c0-.736-.597-1.333-1.333-1.333H11v-2a1 1 0 0 0-1-1H9V8.874a3.99 3.99 0 0 0 1.649-.876 4.5 4.5 0 0 0 4.35-4.622.75.75 0 0 0-.596-.714A30.897 30.897 0 0 0 12 2.256v-.567ZM4 3.768c-.49.066-.976.145-1.458.235a3.004 3.004 0 0 0 1.64 2.192A3.999 3.999 0 0 1 4 5V3.769Zm8 0c.49.066.976.145 1.458.235a3.004 3.004 0 0 1-1.64 2.192C11.936 5.818 12 5.416 12 5V3.769Z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span>Loyal Customer</span>
+                                </div>
+                            </a>
+                            <!-- END Customer Card -->
+                        </div>
+                    </div>
+                    <!-- END Top Customers -->
+                </div>
+                <!-- END Page Section -->
+            </main>
+            <!-- END Page Content -->
+
+            <!-- Page Footer -->
+            <footer id="page-footer" class="flex flex-none items-center border-t border-stone-100">
+                <div
+                    class="container mx-auto flex flex-col gap-2 px-4 py-5 text-center text-sm font-medium text-stone-600 md:flex-row md:justify-between md:gap-0 md:text-start lg:px-8 xl:max-w-7xl">
+                    <div>© <span class="font-semibold">TailStore</span></div>
+                    <div class="inline-flex items-center justify-center">
+                        <span>Crafted with</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor" aria-hidden="true" class="mx-1 size-4 text-red-600">
+                            <path
+                                d="M9.653 16.915l-.005-.003-.019-.01a20.759 20.759 0 01-1.162-.682 22.045 22.045 0 01-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 018-2.828A4.5 4.5 0 0118 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 01-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 01-.69.001l-.002-.001z">
+                            </path>
+                        </svg>
+                        <span>by
+                            <a class="font-medium text-violet-600 transition hover:text-violet-700"
+                                href="https://pixelcave.com" target="_blank">pixelcave</a></span>
+                    </div>
+                </div>
+            </footer>
+            <!-- END Page Footer -->
+        </div>
+        <!-- END Page Container -->
+    </div>
+</body>
+
+</html>
