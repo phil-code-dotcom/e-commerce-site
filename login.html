@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | YourStore</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <style type="text/tailwindcss">
+        @theme {
+            --color-brand: #4338ca;
+            --color-brand-dark: #3730a3;
+            --color-brand-light: #eef2ff;
+            --color-accent: #c2410c;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen items-center justify-center bg-gray-100 px-4 py-12 font-sans text-gray-900">
+    <main class="w-full max-w-sm">
+        <a href="index.html" class="block text-center text-2xl font-bold text-brand">YourStore</a>
+
+        <div class="mt-6 rounded-2xl bg-white p-8 shadow-md">
+            <h1 class="text-2xl font-semibold">Sign in</h1>
+            <p class="mt-1 text-sm text-gray-600">Welcome back. Enter your details to continue.</p>
+
+            <form id="login-form" class="mt-6 space-y-5">
+                <div>
+                    <label for="login-identifier" class="block text-sm font-medium">Email or username</label>
+                    <input type="text" id="login-identifier" name="identifier" autocomplete="username" required
+                        class="mt-2 w-full rounded-lg border border-gray-200 px-3 py-2 focus-visible:ring-2 focus-visible:ring-brand">
+                </div>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium">Password</label>
+                    <input type="password" id="login-password" name="password" autocomplete="current-password" required
+                        class="mt-2 w-full rounded-lg border border-gray-200 px-3 py-2 focus-visible:ring-2 focus-visible:ring-brand">
+                </div>
+
+                <!-- JS later: show login errors here -->
+                <p id="login-error" role="alert" class="hidden text-sm text-accent"></p>
+
+                <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" id="login-remember" name="remember" class="size-4 accent-brand">
+                    Remember me
+                </label>
+
+                <button type="submit"
+                    class="w-full cursor-pointer rounded-lg bg-brand py-2.5 font-semibold text-white hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand">Sign
+                    in</button>
+            </form>
+        </div>
+
+        <p class="mt-6 text-center text-sm text-gray-600">New here?
+            <a href="signup.html" class="font-semibold text-brand hover:underline">Create an account</a>
+        </p>
+    </main>
+</body>
+
+</html>
