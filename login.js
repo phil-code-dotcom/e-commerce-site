@@ -1,4 +1,4 @@
-// Login page: sign in with DummyJSON
+
 const loginForm = document.getElementById('login-form');
 const loginUsername = document.getElementById('login-identifier');
 const loginPassword = document.getElementById('login-password');
@@ -15,7 +15,7 @@ loginForm.addEventListener('submit', async (e) => {
     loginError.classList.add('hidden');
 
     const username = loginUsername.value.trim();
-    const password = loginPassword.value; // don't trim passwords
+    const password = loginPassword.value;
 
     if (!username || !password) {
         showError('Please enter your username and password.');
@@ -33,7 +33,7 @@ loginForm.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            // Save who is logged in. Other pages will read this.
+            //Ths is to save who is logged in
             localStorage.setItem('user', JSON.stringify({
                 id: data.id,
                 username: data.username,

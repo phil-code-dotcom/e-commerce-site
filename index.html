@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YourStore</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Colors live here. Change them once and the whole site updates. -->
+    
     <style type="text/tailwindcss">
         @theme {
             --color-brand: #4338ca;
@@ -33,7 +33,6 @@
         <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" /></symbol>
     </svg>
 
-    <!-- ============ HEADER ============ -->
     <header class="sticky top-0 z-50 border-b border-gray-200 bg-white">
         <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
             <a href="index.html" class="text-xl font-bold text-brand">YourStore</a>
@@ -66,7 +65,7 @@
             </div>
         </div>
 
-        <!-- Mobile menu (works without JS) -->
+        <!-- mobile menu -->
         <details class="border-t border-gray-200 px-4 lg:hidden">
             <summary class="flex cursor-pointer list-none items-center gap-2 py-3 font-semibold [&::-webkit-details-marker]:hidden">
                 <svg class="size-6 fill-none stroke-current stroke-2" stroke-linecap="round" aria-hidden="true"><use href="#i-menu" /></svg>
@@ -91,7 +90,7 @@
     </header>
 
     <main>
-        <!-- ============ HERO (bento grid) ============ -->
+        <!--hero-->
         <section id="home" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-6">
             <div class="grid gap-4 md:grid-cols-4 md:grid-rows-2">
                 <a href="#products"
@@ -101,7 +100,7 @@
                     <span class="mt-6 w-fit rounded-lg bg-white px-6 py-3 font-semibold text-brand">Shop now</span>
                 </a>
 
-                <!-- JS later: fill with the deal product -->
+                <!-- I will use js to fill with the deal product -->
                 <a id="deal-tile" href="#products"
                     class="flex items-center justify-between gap-4 rounded-2xl bg-brand-light p-6 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-brand md:col-span-2">
                     <div>
@@ -112,7 +111,7 @@
                     <div class="size-24 shrink-0 rounded-xl bg-white"></div>
                 </a>
 
-                <!-- JS later: fill with the top rated product -->
+                <!-- I will use js to fill with the top rated product -->
                 <a id="top-rated-tile" href="#products"
                     class="rounded-2xl bg-white p-6 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-brand">
                     <h2 class="text-lg font-bold">Top rated</h2>
@@ -130,7 +129,7 @@
             </div>
         </section>
 
-        <!-- ============ TRUST STRIP ============ -->
+        <!-- trust-->
         <section class="mx-auto max-w-7xl px-4 py-6">
             <div class="grid gap-4 rounded-2xl bg-white p-6 sm:grid-cols-3">
                 <div class="flex items-center gap-3">
@@ -148,7 +147,7 @@
             </div>
         </section>
 
-        <!-- ============ CATEGORIES (JS later: build from /products/categories) ============ -->
+        <!-- categories section use js to  build from /products/categories -->
         <section id="categories" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-10">
             <h2 class="mb-6 text-2xl font-bold">Shop by category</h2>
             <div id="category-list" class="grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -171,7 +170,7 @@
             </div>
         </section>
 
-        <!-- ============ FEATURED PRODUCTS (JS later: render cards into #product-grid) ============ -->
+        <!-- featured products use JS later to render cards into #product-grid -->
         <section id="products" class="mx-auto max-w-7xl scroll-mt-20 px-4 py-10">
             <div class="mb-6 flex items-center justify-between">
                 <h2 class="text-2xl font-bold">Featured products</h2>
@@ -182,7 +181,7 @@
             </div>
         </section>
 
-        <!-- ============ NEWSLETTER ============ -->
+        <!-- news letter section -->
         <section class="mx-auto max-w-7xl px-4 py-10">
             <div class="rounded-2xl bg-gray-900 p-8 text-center text-white md:p-12">
                 <h2 class="text-2xl font-bold md:text-3xl">Get 10% off your first order</h2>
@@ -197,7 +196,7 @@
         </section>
     </main>
 
-    <!-- ============ FOOTER ============ -->
+    <!-- footer -->
     <footer class="mt-10 border-t border-gray-200 bg-white">
         <div class="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
             <div>
@@ -232,7 +231,7 @@
         <div class="border-t border-gray-200 py-6 text-center text-sm text-gray-500">&copy; 2026 YourStore. All rights reserved.</div>
     </footer>
 
-    <!-- ============ CART SIDEBAR ============ -->
+    <!-- cart side-bar -->
     <div id="cart-overlay" class="fixed inset-0 z-40 hidden bg-black/50"></div>
     <aside id="cart-sidebar" aria-label="Shopping cart"
         class="fixed inset-y-0 right-0 z-50 flex w-full translate-x-full flex-col bg-white shadow-xl transition-transform duration-300 md:w-96">
@@ -257,7 +256,7 @@
         </div>
     </aside>
 
-    <!-- Order matters: cart.js, then ui.js, then main.js -->
+    
     <script src="cart.js"></script>
     <script src="ui.js"></script>
     <script src="main.js"></script>

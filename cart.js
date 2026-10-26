@@ -1,7 +1,7 @@
-// Cart saved in localStorage
+// car saved in localStorage
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// DOM elements
+// dom elements
 const cartSidebar = document.getElementById('cart-sidebar');
 const cartOverlay = document.getElementById('cart-overlay');
 const cartBtn = document.getElementById('cart-btn');

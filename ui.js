@@ -1,4 +1,4 @@
-// Draw product cards into a container (used by main.js and shop.js)
+//Draw product cards into a container (used by main.js and shop.js)
 function displayProducts(list, container) {
     container.innerHTML = '';
 

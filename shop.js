@@ -1,4 +1,5 @@
-// Shop page: search, category filter, sort and pagination
+// shop page: search, category filter, sort and pagination
+
 const productGrid = document.getElementById('product-grid');
 const categorySelect = document.getElementById('category-select');
 const sortSelect = document.getElementById('sort-select');
