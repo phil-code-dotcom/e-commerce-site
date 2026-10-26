@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All products | YourStore</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
+    <!-- Colors live here. Change them once and the whole site updates. -->
     <style type="text/tailwindcss">
         @theme {
             --color-brand: #4338ca;
@@ -31,6 +31,7 @@
         <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
         <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" /></symbol>
         <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" /></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 11-8 11z" /></symbol>
     </svg>
 
     <!-- header -->
@@ -58,6 +59,11 @@
                         class="rounded-lg border border-gray-200 px-4 py-2 hover:border-brand hover:text-brand">Sign up</a>
                 </div>
 
+                <a href="favorites.html" aria-label="Favorites" class="relative p-2">
+                    <svg class="size-6 fill-none stroke-current stroke-2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-heart" /></svg>
+                    <span id="favorites-count"
+                        class="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">0</span>
+                </a>
                 <button type="button" id="cart-btn" aria-label="Open cart" class="relative cursor-pointer p-2">
                     <svg class="size-6 fill-none stroke-current stroke-2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-cart" /></svg>
                     <span id="cart-count"
@@ -196,6 +202,7 @@
     </aside>
 
     <script src="cart.js"></script>
+    <script src="favorites.js"></script>
     <script src="ui.js"></script>
     <script src="shop.js"></script>
 
